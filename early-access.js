@@ -186,7 +186,8 @@ async function finish(user) {
   const note = document.querySelector("[data-done-note]");
   note.hidden = pending;
   note.textContent = pending ? "" : "You already have a Herfect account, so your password hasn't changed. Sign in to the app with it.";
-  api("/auth/v1/logout", { token: state.token }).catch(() => {});
+  // scope=local ends only this page's session, so an app sign-in on the same account stays.
+  api("/auth/v1/logout?scope=local", { token: state.token }).catch(() => {});
   Object.assign(state, { password: "", token: "" });
   passwordInput.value = "";
   confirmInput.value = "";
