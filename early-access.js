@@ -1,3 +1,8 @@
+// The verification code, fixed until the Supabase email template and SMTP sender are set up (owner decision
+// 2026-11-19): no email is sent; the page checks this code and makes the account with POST /auth/v1/signup.
+// Set it to "" to restore the emailed code (and revert backend migration 20261119000000_early_access_fixed_code.sql).
+const FIXED_CODE = "123456";
+
 // Early-access sign-up on the app's Supabase project, so the account also signs in to the app. Flow and errors:
 // docs/knowledge/development/backend/early-access.md. The URL and publishable key are the app's HERFECT_SUPABASE_URL
 // and HERFECT_SUPABASE_KEY (project.yml); the key is public by design and row level security guards the data.
@@ -22,6 +27,15 @@ const codeInput = document.getElementById("code");
 const resendButton = codeForm.querySelector("[data-resend]");
 const resendStatus = codeForm.querySelector("[data-resend-status]");
 
+// With the fixed code no email goes out: the code step asks for the code without promising one and has no resend.
+if (FIXED_CODE) {
+  codeForm.querySelector(".signup-intro").textContent = "Enter your 6-digit code.";
+  codeForm.querySelector('label[for="code"]').textContent = "Your code";
+  document.querySelector('[data-step-mark="code"]').lastChild.textContent = "Code";
+  accountForm.querySelector('button[type="submit"]').firstChild.textContent = "Continue";
+  resendButton.hidden = true;
+}
+
 const MESSAGES = {
   offline: "We can't reach Herfect right now. Check your connection and try again.",
   email_address_invalid: "That email address can't receive mail. Check it and try again.",
@@ -35,6 +49,8 @@ const MESSAGES = {
   otp_expired: "That code doesn't match or has expired. Use the newest email, or send a new code.",
   weak_password: "That password is too easy to guess. Try a longer one with letters and numbers.",
   session_expired: "That took a little long. Enter your details again and we'll send a new code.",
+  user_already_exists: "You already have a Herfect account. Sign in to the app with your email and password.",
+  email_exists: "You already have a Herfect account. Sign in to the app with your email and password.",
 };
 
 class ApiError extends Error {
@@ -155,8 +171,9 @@ function startCooldown() {
   state.timer = setInterval(tick, 1000);
 }
 
-// Sets the password of an account the code request just made, then adds her to the list.
-async function finish(user) {
+// Sets the password of an account the code request just made, then adds her to the list. `created`: the fixed-code
+// sign-up just made the account with her password.
+async function finish(user, created = false) {
   const pending = user?.user_metadata?.[PENDING_KEY] === "pending";
   if (pending) {
     try {
@@ -184,7 +201,7 @@ async function finish(user) {
     ? "You're already on the list!"
     : "You're on the list!";
   const note = document.querySelector("[data-done-note]");
-  note.hidden = pending;
+  note.hidden = pending || created;
   note.textContent = pending ? "" : "You already have a Herfect account, so your password hasn't changed. Sign in to the app with it.";
   // scope=local ends only this page's session, so an app sign-in on the same account stays.
   api("/auth/v1/logout?scope=local", { token: state.token }).catch(() => {});
@@ -208,13 +225,13 @@ accountForm.addEventListener("submit", (event) => {
         return;
       }
       state.email = emailInput.value.trim().toLowerCase();
-      await requestCode();
+      if (!FIXED_CODE) await requestCode();
       codeInput.value = "";
       setFieldError(codeInput, "");
       setFormError(codeForm, "");
       resendStatus.textContent = "";
       show("code");
-      startCooldown();
+      if (!FIXED_CODE) startCooldown();
       codeInput.focus();
     } catch (error) {
       if (state.token && error.status === 401) {
@@ -242,8 +259,12 @@ codeForm.addEventListener("submit", (event) => {
   setFormError(codeForm, "");
   const code = codeInput.value.replace(/\D/g, "");
   if (code.length < 6) {
-    setFieldError(codeInput, "Enter the 6-digit code from the email.");
+    setFieldError(codeInput, FIXED_CODE ? "Enter your 6-digit code." : "Enter the 6-digit code from the email.");
     codeInput.focus();
+    return;
+  }
+  if (FIXED_CODE) {
+    joinWithFixedCode(code);
     return;
   }
   busy(codeForm, async () => {
@@ -261,6 +282,40 @@ codeForm.addEventListener("submit", (event) => {
     }
   });
 });
+
+// The fixed-code flow: only FIXED_CODE passes, then a password sign-up ("Confirm email" is off, so it answers with a
+// session) makes the account and she joins the list. An email with an account is sent back to sign in with the app.
+function joinWithFixedCode(code) {
+  if (code !== FIXED_CODE) {
+    setFieldError(codeInput, MESSAGES.otp_expired);
+    codeInput.focus();
+    return;
+  }
+  busy(codeForm, async () => {
+    try {
+      const session = await api("/auth/v1/signup", { body: { email: state.email, password: state.password } });
+      if (!session?.access_token) throw new ApiError("no_session", 200);
+      state.token = session.access_token;
+      await finish(session.user, true);
+    } catch (error) {
+      if (["user_already_exists", "email_exists", "weak_password", "email_address_invalid", "validation_failed"]
+        .includes(error.code)) {
+        show("account");
+        if (error.code === "weak_password") {
+          setFieldError(passwordInput, messageFor(error));
+          passwordInput.focus();
+        } else if (error.code === "email_address_invalid" || error.code === "validation_failed") {
+          setFieldError(emailInput, messageFor(error));
+          emailInput.focus();
+        } else {
+          setFormError(accountForm, messageFor(error));
+        }
+      } else {
+        setFormError(codeForm, messageFor(error));
+      }
+    }
+  });
+}
 
 resendButton.addEventListener("click", async () => {
   if (Date.now() < state.cooldownUntil) return;
