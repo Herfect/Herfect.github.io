@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Herfect – your cycle as a cozy garden, on iPhone and Apple Watch</title>
+  <meta name="description" content="Herfect shows your cycle as a sun in a storybook garden, opens each day with one small thing to do, and gives you a crowned cat to care for on iPhone and Apple Watch.">
+  <meta name="theme-color" content="#fff7f0">
+  <meta property="og:title" content="Herfect – your cycle as a cozy garden">
+  <meta property="og:description" content="A sun for your cycle, one small thing to do today, and a cat to care for. On iPhone and Apple Watch.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/today-day.webp">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-cloud" viewBox="0 0 120 60">
+      <circle cx="30" cy="38" r="18" fill="currentColor"/>
+      <circle cx="56" cy="27" r="23" fill="currentColor"/>
+      <circle cx="84" cy="35" r="18" fill="currentColor"/>
+      <rect x="28" y="34" width="62" height="22" rx="11" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-paw" viewBox="0 0 24 24">
+      <ellipse cx="12" cy="16" rx="5.6" ry="4.6" fill="currentColor"/>
+      <circle cx="5.8" cy="9.8" r="2.3" fill="currentColor"/>
+      <circle cx="9.6" cy="5.9" r="2.4" fill="currentColor"/>
+      <circle cx="14.4" cy="5.9" r="2.4" fill="currentColor"/>
+      <circle cx="18.2" cy="9.8" r="2.3" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M12 20.5s-7.5-4.6-7.5-10.1A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.8c0 5.5-7.5 10.1-7.5 10.1z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-flower" viewBox="0 0 30 46">
+      <path d="M15 46V22" stroke="#4e9e57" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M15 36c-6-1-8-6-8-8 4 0 8 3 8 8z" fill="#5db466"/>
+      <g fill="currentColor">
+        <circle cx="15" cy="7.5" r="5.2"/>
+        <circle cx="21.3" cy="12" r="5.2"/>
+        <circle cx="18.9" cy="19.4" r="5.2"/>
+        <circle cx="11.1" cy="19.4" r="5.2"/>
+        <circle cx="8.7" cy="12" r="5.2"/>
+      </g>
+      <circle cx="15" cy="14" r="4" fill="#ffd86b"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24">
+      <path d="M12 2.5c.7 4.6 2.9 6.8 7.5 7.5-4.6.7-6.8 2.9-7.5 7.5-.7-4.6-2.9-6.8-7.5-7.5 4.6-.7 6.8-2.9 7.5-7.5z" fill="currentColor"/>
+      <path d="M19 15.5c.3 1.9 1.2 2.8 3.1 3.1-1.9.3-2.8 1.2-3.1 3.1-.3-1.9-1.2-2.8-3.1-3.1 1.9-.3 2.8-1.2 3.1-3.1z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-hills-hero" viewBox="0 0 1440 220" preserveAspectRatio="none">
+      <path d="M0 120C170 60 360 52 560 104s420 70 600 22 240-52 280-40v134H0z" fill="#c4e6b1"/>
+      <path d="M0 168c240-58 470-62 720-30s470 40 720-6v88H0z" fill="#9ed28d"/>
+      <path d="M0 206c300-26 620-30 940-16s390 10 500 2v28H0z" fill="#fff7f0"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main">
+      <a class="brand" href="#top" aria-label="Herfect, back to top">
+        <img src="favicon.svg" alt="" width="40" height="40">
+        <span>Herfect</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="visually-hidden">Menu</span>
+        <svg class="icon-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+      <ul class="nav-links" id="site-menu">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#apple-watch">Apple Watch</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="btn btn-small nav-cta" href="#early-access" data-early-access>Join early access</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero sky" id="top" aria-labelledby="hero-title">
+      <div class="sun-glow" aria-hidden="true"></div>
+      <svg class="cloud drift wide-only" style="width:150px;left:4%;top:56px" aria-hidden="true"><use href="#i-cloud"/></svg>
+      <svg class="cloud drift slow wide-only" style="width:110px;left:46%;top:24px;opacity:.8" aria-hidden="true"><use href="#i-cloud"/></svg>
+      <svg class="cloud drift" style="width:90px;right:3%;top:230px;opacity:.7" aria-hidden="true"><use href="#i-cloud"/></svg>
+
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>For iPhone and Apple Watch</p>
+          <h1 id="hero-title">Your cycle, as a cozy garden.</h1>
+          <p class="lead">Herfect turns your Apple Watch nights and the periods you log into a sun for your cycle, one small thing to do today, and a crowned cat to look after.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#early-access" data-early-access>Join early access – free for a year</a>
+            <a class="btn btn-quiet" href="#how-it-works">See how it works <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          <ul class="hero-note">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Works with Apple Health</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>A cat on your wrist</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Seven languages</li>
+          </ul>
+        </div>
+
+        <div class="hero-devices">
+          <div class="phone float">
+            <img src="assets/today-day.webp" width="553" height="1200" fetchpriority="high"
+                 alt="Herfect's Today screen: the cat's rose cottage on a lawn under a blue sky, with a smiling sun whose ring shows the cycle in four colors and a dot for today.">
+          </div>
+          <div class="watch float later">
+            <span class="band top" aria-hidden="true"></span>
+            <div class="case"><div class="screen">
+              <img src="assets/watch-cat.webp" width="416" height="496"
+                   alt="The Herfect cat on Apple Watch: a crowned ginger tabby named Kitty, with a Calm chip, her care bar and the line “All calm. You good?”">
+            </div></div>
+            <span class="band bottom" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+
+      <svg class="hills" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true"><use href="#i-hills-hero"/></svg>
+    </section>
+
+    <section class="pillars" aria-labelledby="pillars-title">
+      <h2 id="pillars-title" class="visually-hidden">What Herfect gives you</h2>
+      <ul class="wrap pillar-grid">
+        <li class="pillar">
+          <div class="badge tint-rose" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="6" fill="#ffd86b"/><path d="M16 4a12 12 0 0 1 12 12" stroke="#ffb8cc" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M28 16a12 12 0 0 1-12 12" stroke="#4fc3b0" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M16 28A12 12 0 0 1 4 16" stroke="#b794f6" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M4 16A12 12 0 0 1 16 4" stroke="#ffa25f" stroke-width="3.4" fill="none" stroke-linecap="round"/><circle cx="24.5" cy="7.5" r="2.6" fill="#c73e6b"/></svg>
+          </div>
+          <h3>See where you are</h3>
+          <p>The sun's ring is your cycle in four colors. The little dot is today.</p>
+        </li>
+        <li class="pillar">
+          <div class="badge tint-butter" aria-hidden="true"><svg><use href="#i-sparkle"/></svg></div>
+          <h3>Do one small thing</h3>
+          <p>Each day opens with one gentle action, like “Take an early night.”</p>
+        </li>
+        <li class="pillar">
+          <div class="badge tint-leaf" aria-hidden="true"><svg><use href="#i-paw"/></svg></div>
+          <h3>Care for a cat</h3>
+          <p>Feed her, play with her, visit friends, and take her with you on your wrist.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="features" id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><svg aria-hidden="true"><use href="#i-flower"/></svg>Inside the garden</p>
+          <h2 id="features-title">A little world that knows your days</h2>
+          <p class="lead">Swipe between three pages: the garden, the cat's room and the neighborhood. Your cycle and your nights come from Apple Health.</p>
+        </div>
+
+        <article class="feature" aria-labelledby="f-sun">
+          <div class="feature-copy">
+            <p class="eyebrow">Today</p>
+            <h3 id="f-sun">Your cycle as a sun</h3>
+            <p>The sun over your garden is a dial. Its ring is your cycle, and a dot marks today. The sky follows the real sun and your weather, so evenings glow and nights bring out the moon.</p>
+            <ul class="chips" aria-label="Phase colors">
+              <li><span class="dot" style="background:#ffb8cc"></span>Period</li>
+              <li><span class="dot" style="background:#4fc3b0"></span>Follicular</li>
+              <li><span class="dot" style="background:#b794f6"></span>Ovulation</li>
+              <li><span class="dot" style="background:#ffa25f"></span>Luteal</li>
+            </ul>
+            <ul class="ticks">
+              <li>Tap the sun, or the moon, to sync with Apple Health.</li>
+              <li>The signpost shows when your next period is expected.</li>
+            </ul>
+          </div>
+          <div class="feature-media" style="--blob:#ffeccc">
+            <div class="phone"><img src="assets/today-day.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The garden by day, with the cycle ring around the sun, the next-period sign and the mailbox."></div>
+            <div class="phone offset"><img src="assets/today-night.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The garden at night, where a sleepy moon carries the cycle ring over the lit cottage."></div>
+          </div>
+        </article>
+
+        <article class="feature" aria-labelledby="f-summary">
+          <div class="feature-copy">
+            <p class="eyebrow">Today's book</p>
+            <h3 id="f-summary">One small thing to do today</h3>
+            <p>Today's book opens with a single action picked for your day, such as “Take an early night.” or “Keep a warm drink close.” Below it come today's score, then sleep, recovery, stress and temperature, set against your own usual.</p>
+            <ul class="ticks">
+              <li>Five mood flowers grow by the house: stress, happiness, crush, anger and sadness.</li>
+              <li>“Log a period” sits right at the foot of the page.</li>
+            </ul>
+          </div>
+          <div class="feature-media single" style="--blob:#ffe3eb">
+            <div class="phone float"><img src="assets/book-summary.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The Summary page of Today's book: “Take an early night.”, two short sentences, then rows for today's score, sleep, recovery, stress and temperature."></div>
+          </div>
+        </article>
+
+        <article class="feature" aria-labelledby="f-book">
+          <div class="feature-copy">
+            <p class="eyebrow">Calendar and Mood Notes</p>
+            <h3 id="f-book">A book for your days</h3>
+            <p>Turn the page with the little paw. The Cycle Calendar paints your phases in soft bands and outlines the period it expects next. Tap today or an earlier day to log it.</p>
+            <p>Mood Notes gathers what you left on your watch: a cat face for each day's mood, and your notes, typed or spoken.</p>
+            <ul class="ticks">
+              <li>My Book, at Home, keeps your temperature wave and a report for each cycle.</li>
+            </ul>
+          </div>
+          <div class="feature-media trio" style="--blob:#efe6fd">
+            <div class="phone"><img src="assets/book-calendar.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The Cycle Calendar for November: phase bands in pink, mint, lavender and apricot, dashed circles for the expected period, and a key below."></div>
+            <div class="phone"><img src="assets/book-moods.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The Mood Notes page: a week of cat faces from the watch, then notes with their date and time."></div>
+            <div class="phone"><img src="assets/report.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The Cycle Report in My Book: cycle length, period days, the day of the temperature rise and the next expected period, above a chart of nightly temperature against her usual."></div>
+          </div>
+        </article>
+
+        <article class="feature" aria-labelledby="f-cat">
+          <div class="feature-copy">
+            <p class="eyebrow">Home</p>
+            <h3 id="f-cat">A cat to care for</h3>
+            <p>Inside the cottage your cat has a bed, a bowl and a scratching post. Tap her to play: a teaser wand, a fish treat, a bubble bath or a visit to a friend. Her care bar rises with every pet, play and meal.</p>
+            <ul class="ticks">
+              <li>She has kibble for breakfast and dinner, and cans of cat food as treats.</li>
+              <li>Pick her look on day one from six colors and five coats.</li>
+            </ul>
+          </div>
+          <div class="feature-media" style="--blob:#fff0d4">
+            <div class="phone"><img src="assets/home-play.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The cat's room at Home by day, with four round play buttons beside the cat: wand, treat, bath and visit."></div>
+            <div class="phone offset"><img src="assets/home-feed.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The cat's room in the evening, with the cat eating from her bowl by the rug."></div>
+          </div>
+        </article>
+
+        <article class="feature" aria-labelledby="f-hood">
+          <div class="feature-copy">
+            <p class="eyebrow">Neighborhood</p>
+            <h3 id="f-hood">Your friends' cats next door</h3>
+            <p>Share your refer code. When a friend joins with it, her cat moves into a house down your lane, in its own coat, crown and house.</p>
+            <ul class="ticks">
+              <li>Visit a friend's cat to share a snack, chase a butterfly or nap in the sun.</li>
+              <li>When her cat visits yours, a note with a drawn photo of the two of them waits on your wall.</li>
+            </ul>
+          </div>
+          <div class="feature-media single" style="--blob:#e3f4e2">
+            <div class="phone float"><img src="assets/playground.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The Neighborhood: friends' cats in their houses down the lane."></div>
+          </div>
+        </article>
+
+        <article class="feature" aria-labelledby="f-rewards">
+          <div class="feature-copy">
+            <p class="eyebrow">Mailbox</p>
+            <h3 id="f-rewards">Little rewards</h3>
+            <p>A short check-in waits in the mailbox each day. Every check-in brings your cat a can of cat food, and the days in a row add up on your house number.</p>
+            <ul class="ticks">
+              <li>Every 7 days in a row: a new crown and bell.</li>
+              <li>Every 14 days: a new house, from a mushroom to a seaside cabin.</li>
+              <li>Miss a day and keep everything you've earned.</li>
+            </ul>
+          </div>
+          <div class="feature-media" style="--blob:#fff4d1">
+            <div class="phone"><img src="assets/mailbox.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The mailbox: a streak board with days in a row, today's check-in, cans of cat food and the next crown and bell, above the letters."></div>
+            <div class="phone offset"><img src="assets/collection.webp" width="553" height="1200" loading="lazy" decoding="async" alt="The collection: crowns and bells, each shown on the cat, with the ones in use marked."></div>
+          </div>
+        </article>
+
+        <article class="feature" aria-labelledby="f-draw">
+          <div class="feature-copy">
+            <p class="eyebrow">The signpost</p>
+            <h3 id="f-draw">A lucky draw a day</h3>
+            <p>Tap the signpost by the door and pick one of five folded lots. Out comes today's fortune slip, always good luck, with a few kind words. Burn it, or keep it and find it again with a swipe left.</p>
+            <ul class="ranks" aria-label="Fortunes">
+              <li>Gentle Whisker Luck <span class="paws" role="img" aria-label="1 paw"><svg aria-hidden="true"><use href="#i-paw"/></svg></span></li>
+              <li>Good Paw Luck <span class="paws" role="img" aria-label="2 paws"><svg aria-hidden="true"><use href="#i-paw"/></svg><svg aria-hidden="true"><use href="#i-paw"/></svg></span></li>
+              <li>Great Bell Luck <span class="paws" role="img" aria-label="3 paws"><svg aria-hidden="true"><use href="#i-paw"/></svg><svg aria-hidden="true"><use href="#i-paw"/></svg><svg aria-hidden="true"><use href="#i-paw"/></svg></span></li>
+              <li>Grand Crown Luck <span class="paws" role="img" aria-label="4 paws"><svg aria-hidden="true"><use href="#i-paw"/></svg><svg aria-hidden="true"><use href="#i-paw"/></svg><svg aria-hidden="true"><use href="#i-paw"/></svg><svg aria-hidden="true"><use href="#i-paw"/></svg></span></li>
+            </ul>
+          </div>
+          <div class="feature-media slip-stage" style="--blob:#ffe3eb">
+            <figure class="slip" aria-label="An example fortune slip">
+              <span class="ribbon">Cat Kingdom</span>
+              <p class="fortune">Great Bell Luck</p>
+              <div class="paws" role="img" aria-label="3 of 4 paws">
+                <svg aria-hidden="true"><use href="#i-paw"/></svg>
+                <svg aria-hidden="true"><use href="#i-paw"/></svg>
+                <svg aria-hidden="true"><use href="#i-paw"/></svg>
+                <svg class="off" aria-hidden="true"><use href="#i-paw"/></svg>
+              </div>
+              <p class="words-head">Words of today</p>
+              <blockquote>The sky is being kind today. Be just as kind to yourself.</blockquote>
+              <span class="seal" aria-hidden="true"><svg><use href="#i-paw"/></svg></span>
+            </figure>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="watch-section" id="apple-watch" aria-labelledby="watch-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><svg aria-hidden="true"><use href="#i-paw"/></svg>Apple Watch</p>
+          <h2 id="watch-title">Your cat, on your wrist</h2>
+          <p class="lead">Open Herfect on your watch and the cat comes along. Everything you leave there lands in Mood Notes on your iPhone.</p>
+        </div>
+        <ul class="watch-grid">
+          <li class="watch-card">
+            <div class="watch">
+              <span class="band top" aria-hidden="true"></span>
+              <div class="case"><div class="screen"><img src="assets/watch-cat.webp" width="416" height="496" loading="lazy" decoding="async" alt="The cat on the watch with a Calm chip, her care bar and the line “All calm. You good?”"></div></div>
+              <span class="band bottom" aria-hidden="true"></span>
+            </div>
+            <span class="gesture">Roll the crown</span>
+            <h3>Pet her</h3>
+            <p>Each turn of the Digital Crown is a pet. Hearts rise and she purrs.</p>
+          </li>
+          <li class="watch-card">
+            <div class="watch">
+              <span class="band top" aria-hidden="true"></span>
+              <div class="case"><div class="screen"><img src="assets/watch-mood.webp" width="416" height="496" loading="lazy" decoding="async" alt="“How do you feel?” with Great, Good, Okay and Low as cat faces."></div></div>
+              <span class="band bottom" aria-hidden="true"></span>
+            </div>
+            <span class="gesture">Tap</span>
+            <h3>Log a mood</h3>
+            <p>Great, good, okay or low. Each day's mood shows as a cat face in your calendar.</p>
+          </li>
+          <li class="watch-card">
+            <div class="watch">
+              <span class="band top" aria-hidden="true"></span>
+              <div class="case"><div class="screen"><img src="assets/watch-note.webp" width="416" height="496" loading="lazy" decoding="async" alt="The note sheet: the cat says “I'm all ears. Tell me a little note” above a yellow Speak button."></div></div>
+              <span class="band bottom" aria-hidden="true"></span>
+            </div>
+            <span class="gesture">Double tap</span>
+            <h3>Leave a voice note</h3>
+            <p>Speak a few words, or type them. Your iPhone writes them into Mood Notes.</p>
+          </li>
+          <li class="watch-card">
+            <div class="watch">
+              <span class="band top" aria-hidden="true"></span>
+              <div class="case"><div class="screen"><img src="assets/watch-overload.webp" width="416" height="496" loading="lazy" decoding="async" alt="The cat looking frazzled under a Strained chip, with the line “It's too much right now”."></div></div>
+              <span class="band bottom" aria-hidden="true"></span>
+            </div>
+            <span class="gesture">Stress runs high</span>
+            <h3>Breathe together</h3>
+            <p>After a night when stress ran at its highest, your cat gets frazzled. Tap her for three slow breaths together.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="steps-section" id="how-it-works" aria-labelledby="steps-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><svg aria-hidden="true"><use href="#i-heart"/></svg>How it works</p>
+          <h2 id="steps-title">Three steps into the garden</h2>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <h3>Connect Apple Health and your watch</h3>
+            <p>Let Herfect read your sleep, heart and overnight wrist temperature from Apple Health, and the periods you log. Wear your Apple Watch to bed.</p>
+          </li>
+          <li class="step">
+            <h3>Meet your cat</h3>
+            <p>Choose her look, say hello, answer a short quiz and get your first report.</p>
+          </li>
+          <li class="step">
+            <h3>Check in each day</h3>
+            <p>Open the garden, do today's one small thing, and check in at the mailbox. Your cat gets a can, and your streak grows.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="languages" aria-labelledby="lang-title">
+      <div class="wrap">
+        <h2 id="lang-title">The iPhone app speaks seven languages</h2>
+        <ul class="lang-list">
+          <li lang="en">English</li>
+          <li lang="es">Español</li>
+          <li lang="fr">Français</li>
+          <li lang="ja">日本語</li>
+          <li lang="ko">한국어</li>
+          <li lang="zh-Hans">简体中文</li>
+          <li lang="zh-Hant">繁體中文</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>FAQ</p>
+          <h2 id="faq-title">Questions, answered</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>What do I need?</summary>
+            <div class="answer">
+              <p>An iPhone with iOS 26. An Apple Watch with watchOS 26 adds your nights and the cat on your wrist.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Do I need an Apple Watch?</summary>
+            <div class="answer">
+              <p>Herfect reads the overnight readings your Apple Watch saves to Apple Health: sleep, wrist temperature, heart rate variability, resting heart rate and breathing. Today's score, the sleep, recovery, stress and temperature rows and the mood flowers come from those nights.</p>
+              <p>Without a watch you can still log periods and see them on the Cycle Calendar, care for your cat, visit the neighbors, check in at the mailbox and draw a lot each day. Moods and voice notes are left on the watch.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How does Herfect know when my next period is due?</summary>
+            <div class="answer">
+              <p>From your own cycles. Once you have logged enough of them, it expects your next period from your recent cycle lengths. Until then, the calendar and the sun show a striped guess, marked as a guess.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How does the cat work?</summary>
+            <div class="answer">
+              <p>You choose her look when you start, and it stays hers. She eats kibble at breakfast and dinner, plays at Home, visits the neighbors and sleeps in her house during your sleep hours. Her care bar rises each time you pet, play with or feed her.</p>
+              <p>Open Herfect on your Apple Watch and she moves to your wrist. Close it and she comes back to the iPhone.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How do the rewards work?</summary>
+            <div class="answer">
+              <p>Check in at the mailbox once a day. Each day's check-in brings one can of cat food for your cat. Every 7 days in a row unlock the next crown and bell, and every 14 days let you pick a new house. If your streak breaks, everything you earned stays yours.</p>
+            </div>
+          </details>
+          <details>
+            <summary>What is the lucky draw?</summary>
+            <div class="answer">
+              <p>Tap the signpost on Today and pick one of five folded lots for your fortune slip of the day. Every fortune is good luck, from Gentle Whisker Luck to Grand Crown Luck, with a few kind words. Burn the slip or keep it; kept slips wait a swipe left behind today's.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Which languages does Herfect speak?</summary>
+            <div class="answer">
+              <p>The iPhone app comes in English, Spanish, French, Japanese, Korean, and Simplified and Traditional Chinese. It follows your iPhone's language, or you can pick one in the app. The watch app is in English.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How do I get Herfect?</summary>
+            <div class="answer">
+              <p>Herfect is in early access. When you first open the app, it asks for an invite code. <a href="#early-access" data-early-access>Join early access</a> to get started.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" id="early-access" aria-labelledby="cta-title">
+      <div class="sun-glow" aria-hidden="true"></div>
+      <svg class="cloud drift slow wide-only" style="width:130px;left:8%;top:90px;opacity:.85" aria-hidden="true"><use href="#i-cloud"/></svg>
+      <svg class="cloud drift wide-only" style="width:100px;right:9%;top:150px;opacity:.75" aria-hidden="true"><use href="#i-cloud"/></svg>
+      <div class="wrap">
+        <img class="cat-big" src="favicon.svg" alt="" width="96" height="96">
+        <h2 id="cta-title">Come and grow your garden</h2>
+        <p class="lead">Herfect is in early access on iPhone and Apple Watch. Your cat is waiting.</p>
+        <a class="btn" href="#early-access" data-early-access>Join early access – free for a year</a>
+      </div>
+      <svg class="hills" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 120C170 60 360 52 560 104s420 70 600 22 240-52 280-40v134H0z" fill="#b6dca0"/>
+        <path d="M0 168c240-58 470-62 720-30s470 40 720-6v88H0z" fill="#8cc67c"/>
+        <path d="M0 196c300-26 620-30 940-16s390 10 500 2v38H0z" fill="#4b7f45"/>
+      </svg>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="favicon.svg" alt="" width="32" height="32"><span>Herfect</span></a>
+      <ul class="footer-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#apple-watch">Apple Watch</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <small>© 2026 Herfect</small>
+    </div>
+  </footer>
+</body>
+</html>
