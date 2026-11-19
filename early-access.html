@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join early access – Herfect</title>
+  <meta name="description" content="Join Herfect early access: be one of the first testers on iPhone and Apple Watch, with your first year free.">
+  <meta name="theme-color" content="#fff7f0">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="early-access.js" defer></script>
+</head>
+<body class="signup-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-cloud" viewBox="0 0 120 60">
+      <circle cx="30" cy="38" r="18" fill="currentColor"/>
+      <circle cx="56" cy="27" r="23" fill="currentColor"/>
+      <circle cx="84" cy="35" r="18" fill="currentColor"/>
+      <rect x="28" y="34" width="62" height="22" rx="11" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24">
+      <path d="M12 2.5c.7 4.6 2.9 6.8 7.5 7.5-4.6.7-6.8 2.9-7.5 7.5-.7-4.6-2.9-6.8-7.5-7.5 4.6-.7 6.8-2.9 7.5-7.5z" fill="currentColor"/>
+      <path d="M19 15.5c.3 1.9 1.2 2.8 3.1 3.1-1.9.3-2.8 1.2-3.1 3.1-.3-1.9-1.2-2.8-3.1-3.1 1.9-.3 2.8-1.2 3.1-3.1z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main">
+      <a class="brand" href="index.html">
+        <img src="favicon.svg" alt="" width="40" height="40">
+        <span>Herfect</span>
+      </a>
+      <a class="btn btn-small btn-quiet signup-back" href="index.html">Back to Herfect</a>
+    </nav>
+  </header>
+
+  <main id="main" class="signup sky">
+    <div class="sun-glow" aria-hidden="true"></div>
+    <svg class="cloud drift wide-only" style="width:150px;left:5%;top:70px" aria-hidden="true"><use href="#i-cloud"/></svg>
+    <svg class="cloud drift slow wide-only" style="width:110px;right:7%;top:180px;opacity:.85" aria-hidden="true"><use href="#i-cloud"/></svg>
+
+    <div class="signup-card">
+      <img class="signup-cat" src="favicon.svg" alt="" width="84" height="84">
+      <p class="eyebrow"><svg aria-hidden="true"><use href="#i-sparkle"/></svg>Early access</p>
+      <h1 id="signup-title" tabindex="-1">Join early access</h1>
+
+      <ol class="signup-steps" aria-label="Steps">
+        <li data-step-mark="account" aria-current="step"><span class="dot" aria-hidden="true">1</span>Your account</li>
+        <li data-step-mark="code"><span class="dot" aria-hidden="true">2</span>Email code</li>
+        <li data-step-mark="done"><span class="dot" aria-hidden="true">3</span>Done</li>
+      </ol>
+
+      <form class="signup-step" id="step-account" data-step="account" novalidate>
+        <p class="signup-intro">Make your Herfect account. You'll sign in to the app with the same email and password.</p>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" required aria-describedby="email-error">
+          <p class="field-error" id="email-error"></p>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="new-password" minlength="6" required aria-describedby="password-hint password-error">
+          <p class="field-hint" id="password-hint">At least 6 characters.</p>
+          <p class="field-error" id="password-error"></p>
+        </div>
+        <div class="field">
+          <label for="confirm">Confirm password</label>
+          <input id="confirm" name="confirm" type="password" autocomplete="new-password" required aria-describedby="confirm-error">
+          <p class="field-error" id="confirm-error"></p>
+        </div>
+        <label class="show-password"><input type="checkbox" id="show-password"> Show passwords</label>
+        <p class="form-error" role="alert" data-form-error></p>
+        <button class="btn signup-submit" type="submit">Send my code<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </form>
+
+      <form class="signup-step" id="step-code" data-step="code" novalidate hidden>
+        <p class="signup-intro">We sent a 6-digit code to <strong data-email></strong>. It may take a minute to arrive; check your spam folder too.</p>
+        <div class="field">
+          <label for="code">Code from the email</label>
+          <input id="code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="10" required aria-describedby="code-error" class="code-input">
+          <p class="field-error" id="code-error"></p>
+        </div>
+        <p class="form-error" role="alert" data-form-error></p>
+        <button class="btn signup-submit" type="submit">Verify and join<svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <div class="signup-links">
+          <button class="link-button" type="button" data-resend>Send a new code</button>
+          <button class="link-button" type="button" data-change-email>Use a different email</button>
+        </div>
+        <p class="field-hint" role="status" data-resend-status></p>
+      </form>
+
+      <section class="signup-step signup-done" data-step="done" aria-labelledby="done-title" hidden>
+        <span class="done-badge" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+        <h2 id="done-title" tabindex="-1" data-done-title>You're on the list!</h2>
+        <p class="done-lead">When the Herfect app launches, we'll contact you first, as one of our first testers. Your first year is free.</p>
+        <p class="done-note" data-done-note hidden></p>
+        <p class="done-email">Signed up as <strong data-email></strong></p>
+        <a class="btn" href="index.html">Back to Herfect</a>
+      </section>
+    </div>
+
+    <svg class="hills" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 120C170 60 360 52 560 104s420 70 600 22 240-52 280-40v134H0z" fill="#c4e6b1"/>
+      <path d="M0 168c240-58 470-62 720-30s470 40 720-6v88H0z" fill="#9ed28d"/>
+      <path d="M0 206c300-26 620-30 940-16s390 10 500 2v28H0z" fill="#4b7f45"/>
+    </svg>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="brand" href="index.html"><img src="favicon.svg" alt="" width="32" height="32"><span>Herfect</span></a>
+      <small>© 2026 Herfect</small>
+    </div>
+  </footer>
+</body>
+</html>

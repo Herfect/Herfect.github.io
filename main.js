@@ -1,6 +1,7 @@
-// The early-access address: the same page the app's "Join early access" entry opens (HERFECT_EARLY_ACCESS_URL in
-// project.yml). While it is empty, every early-access button leads to the closing #early-access section.
-const EARLY_ACCESS_URL = "";
+// The early-access address: the sign-up page on this site, also what the app's "Join early access" entry should open
+// (HERFECT_EARLY_ACCESS_URL in project.yml, as an absolute address). Every [data-early-access] link opens it; while it
+// is empty, or without JavaScript, they lead to the closing #early-access section.
+const EARLY_ACCESS_URL = "early-access.html";
 
 if (EARLY_ACCESS_URL) {
   for (const link of document.querySelectorAll("[data-early-access]")) {
